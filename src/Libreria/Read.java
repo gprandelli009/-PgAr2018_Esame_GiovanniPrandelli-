@@ -12,6 +12,7 @@ public class Read {
 	Storia storia=new Storia();
 	int idDaPassare=0;
 	String testo;
+	int contatore=0;
 	private ArrayList<String> stringheNelTesto = new ArrayList<String>();
 
 
@@ -62,7 +63,21 @@ public class Read {
 		}
 
 		Raccolta.storie.add(storia);
-        System.out.println(stringheNelTesto.get(0));
+		System.out.println("FFFF"+stringheNelTesto.get(0));
+		for(int i=0;i<storia.getDimensione();i++) {
+			boolean mettiDescrizione=true;
+			for(int j=0;j<storia.paragrafi.get(i).getLink().size()+1;j++) {
+				if(mettiDescrizione) {
+					System.out.println("MMMMAAAA"+stringheNelTesto.get(contatore));
+					storia.paragrafi.get(i).setDescrizione(stringheNelTesto.get(contatore));
+					mettiDescrizione=false;
+				}
+				else {
+					storia.paragrafi.get(i).aggiungiOpzione(stringheNelTesto.get(contatore));
+				}
+				contatore++;
+			}
+		}
 	}
 
 	public void scritturaStoria(String tag,String parametro1, String parametro2) {
@@ -84,11 +99,11 @@ public class Read {
 			}
 			if(tag.equals("option")) {
 				storia.paragrafi.get(idDaPassare).aggiungiLink(Integer.parseInt(parametro1));
-				storia.paragrafi.get(idDaPassare).aggiungiOpzione(testo);
+//				storia.paragrafi.get(idDaPassare).aggiungiOpzione(testo);
 			}
-			if(tag.equals("description")) {
-				storia.paragrafi.get(idDaPassare).setDescrizione(testo);
-			}
+//			if(tag.equals("description")) {
+//				storia.paragrafi.get(idDaPassare).setDescrizione(testo);
+//			}
 		}
 	}
 }
