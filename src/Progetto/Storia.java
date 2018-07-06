@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import Libreria.CreatoreMenu;
 import Libreria.InputDati;
 
+/*
+ * Classe composta da un titolo che identifica una singola storia e da un insieme di paragrafi che la compongono
+ */
+
 public class Storia {
 
 	private String titolo; 
@@ -12,9 +16,14 @@ public class Storia {
 	public ArrayList<Paragrafo> paragrafi = new ArrayList<Paragrafo>();
 
 	public Storia() {
-
 	}
-
+	
+/*
+ * Nel metodo stampaStoria si decide in quale paragrafo l'utente può andare per proseguire nella storia, 
+ * Stando attenti a quali paragrafi siano accessibili, e in caso di errore, richiedere un altro percorso
+ * 
+ */
+	
 	public void stampaStoria(int paragrafoCorrente) {
 		CreatoreMenu menu= new CreatoreMenu(paragrafi.get(paragrafoCorrente).getDescrizione(),paragrafi.get(paragrafoCorrente).getOpzioni(),paragrafi.get(paragrafoCorrente).getLinks());
 		menu.stampaMenu();
@@ -24,14 +33,13 @@ public class Storia {
 			return;
 		}
 		else {
-			boolean nonPossibile=false;
-			//			stampaStoria(prossimoParagrafo);
+			boolean nonPossibile=true;
 			for(int puntatore:paragrafi.get(paragrafoCorrente).getLinks()) {
 				if(puntatore==prossimoParagrafo) {
-					nonPossibile=true;
+					nonPossibile=false;
 				}
 			}
-			if(nonPossibile) {
+			if(!nonPossibile) {
 				stampaStoria(prossimoParagrafo);
 			}
 			else {

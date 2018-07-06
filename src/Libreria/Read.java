@@ -8,8 +8,14 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
 import Progetto.*;
 
+/*
+ * 
+ * Classe che permette la lettura delle storie e l'acquisizione dei dati che compongono quest'ultime
+ * 
+ */
+
 public class Read {
-	Storia storia=new Storia();
+	Storia storia=new Storia();//Ogni volta che il read è chiamato viene creata una nuova storia
 	int idDaPassare=0;
 	String testo;
 	int contatore=0;
@@ -30,14 +36,13 @@ public class Read {
 			while(xmlr.hasNext()) {
 				switch(xmlr.getEventType()) {
 				case XMLStreamConstants.START_DOCUMENT:
-					//System.out.println("Start Read Doc "+filename);
 					break;
 				case XMLStreamConstants.START_ELEMENT:
 					//System.out.println(xmlr.getLocalName()+ xmlr.getAttributeValue(0)+xmlr.getAttributeValue(1));
 					scritturaStoria(xmlr.getLocalName(),xmlr.getAttributeValue(0),xmlr.getAttributeValue(1));
-//					if(xmlr.getLocalName().equals("description")) {
-//						continuaAdAcquisire=true;
-//					}
+					//					if(xmlr.getLocalName().equals("description")) {
+					//						continuaAdAcquisire=true;
+					//					}
 					break;
 				case XMLStreamConstants.END_ELEMENT:
 
@@ -49,9 +54,9 @@ public class Read {
 					//System.out.println("Inside "+xmlr.getText());
 					break;	            	
 				case XMLStreamConstants.CHARACTERS:
-//					if(continuaAdAcquisire) {
-//						
-//					}
+					//					if(continuaAdAcquisire) {
+					//						
+					//					}
 					if(xmlr.getText().trim().length()>0) {
 						//System.out.println(xmlr.getText());
 						testo=xmlr.getText().trim();
@@ -74,8 +79,7 @@ public class Read {
 			System.err.println(e.getMessage());
 		}
 
-		Raccolta.storie.add(storia);
-		//System.out.println(stringheNelTesto);
+		Raccolta.storie.add(storia); //La storia viene aggiunta a fine lettura alla raccolta
 		for(int i=0;i<storia.getDimensione();i++) {
 			boolean mettiDescrizione=true;
 			for(int j=0;j<storia.paragrafi.get(i).getLinks().size()+1;j++) {
@@ -110,11 +114,7 @@ public class Read {
 			}
 			if(tag.equals("option")) {
 				storia.paragrafi.get(idDaPassare).aggiungiLink(Integer.parseInt(parametro1));
-				//				storia.paragrafi.get(idDaPassare).aggiungiOpzione(testo);
 			}
-			//			if(tag.equals("description")) {
-			//				storia.paragrafi.get(idDaPassare).setDescrizione(testo);
-			//			}
 		}
 	}
 }

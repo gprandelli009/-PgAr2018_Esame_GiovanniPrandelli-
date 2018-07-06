@@ -2,6 +2,11 @@ package Progetto;
 
 import java.util.ArrayList;
 
+/*
+ *Classe paragrafo, composta dal tipo di paragrafo, l'id che lo identifica, e tutti i link
+ *alle varie opzioni del gioco
+ */
+
 public class Paragrafo {
 
 	private ArrayList<Integer> link = new ArrayList<Integer>();
@@ -47,10 +52,6 @@ public class Paragrafo {
 	
 	public int getLink(int puntatore){
 		return link.get(puntatore);
-	}
-
-	public void pulisciLink() {
-		link.clear();
 	}
 	
 	public void aggiungiOpzione(String opzioneAggiunta) {
