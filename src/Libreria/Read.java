@@ -19,9 +19,8 @@ public class Read {
 	int idDaPassare=0;
 	String testo;
 	int contatore=0;
-	boolean continuaAdAcquisire=false;
 	private ArrayList<String> stringheNelTesto = new ArrayList<String>();
-
+	boolean continuaAdAcquisire=true;
 
 	public Read() {
 
@@ -54,9 +53,6 @@ public class Read {
 					//System.out.println("Inside "+xmlr.getText());
 					break;	            	
 				case XMLStreamConstants.CHARACTERS:
-					//					if(continuaAdAcquisire) {
-					//						
-					//					}
 					if(xmlr.getText().trim().length()>0) {
 						//System.out.println(xmlr.getText());
 						testo=xmlr.getText().trim();
@@ -96,8 +92,7 @@ public class Read {
 	}
 
 	public void scritturaStoria(String tag,String parametro1, String parametro2) {
-		if(tag.equals("storygame")) {
-			//System.out.println("Nuova storia avviata");
+		if(tag.equals("storygame")) { //if messo per escludere la creazione di un parametro indesiderato
 			return;	
 		}
 		if(tag.equals("story")) {

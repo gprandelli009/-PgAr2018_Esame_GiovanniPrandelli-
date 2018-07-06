@@ -29,7 +29,12 @@ public class MainMenu {
 		aggiungiNomeXML.add("PgAr2018_Story_2.1.xml");
 		aggiungiNomeXML.add("PgAr2018_Story_2.2.xml");
 		aggiungiNomeXML.add("PgAr2018_Story_2.3.xml");
-//		aggiungiNomeXML.add("PgAr2018_Story_5.1.xml");
+		
+		/*
+		 *Le seguenti storie sono commentate perchè non ancora implementate(errori scrittura, stringhe spezzate) 
+		 */
+		
+		aggiungiNomeXML.add("PgAr2018_Story_5.1.xml");
 //		aggiungiNomeXML.add("PgAr2018_Story_5.2.xml");
 //		aggiungiNomeXML.add("PgAr2018_Story_6.1.xml");
 //		aggiungiNomeXML.add("PgAr2018_Story_6.2.xml");
