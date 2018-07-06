@@ -1,6 +1,8 @@
 package Libreria;
 
 
+import java.util.ArrayList;
+
 import Libreria.InputDati;
 
 /*
@@ -15,19 +17,22 @@ public class CreatoreMenu {
 	  final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
 
 	  private String titolo;
-	  private String [] voci;
+	  private ArrayList<String> voci = new ArrayList<String>();
+	  ArrayList<Integer> scelte= new ArrayList<Integer>();
+
 
 		
-	  public CreatoreMenu (String titolo, String [] voci)
+	  public CreatoreMenu (String titolo, ArrayList<String> voci, ArrayList<Integer> scelte)
 	  {
 		this.titolo = titolo;
 		this.voci = voci;
+		this.scelte=scelte;
 	  }
 
 	  public int scegli ()
 	  {
 		stampaMenu();
-		return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.length);	 
+		return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.size());	 
 	  }
 			
 	  public void stampaMenu ()
@@ -35,9 +40,9 @@ public class CreatoreMenu {
 		System.out.println(CORNICE);
 		System.out.println(titolo);
 		System.out.println(CORNICE);
-	    for (int i=0; i<voci.length; i++)
+	    for (int i=0; i<voci.size(); i++)
 		 {
-		  System.out.println( (i+1) + "\t" + voci[i]);
+		  System.out.println( (scelte.get(i) + "\t" + voci.get(i)));
 		 }
 	    System.out.println();
 		System.out.println(VOCE_USCITA);

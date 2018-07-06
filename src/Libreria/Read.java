@@ -63,12 +63,10 @@ public class Read {
 		}
 
 		Raccolta.storie.add(storia);
-		System.out.println("FFFF"+stringheNelTesto.get(0));
 		for(int i=0;i<storia.getDimensione();i++) {
 			boolean mettiDescrizione=true;
-			for(int j=0;j<storia.paragrafi.get(i).getLink().size()+1;j++) {
+			for(int j=0;j<storia.paragrafi.get(i).getLinks().size()+1;j++) {
 				if(mettiDescrizione) {
-					System.out.println("MMMMAAAA"+stringheNelTesto.get(contatore));
 					storia.paragrafi.get(i).setDescrizione(stringheNelTesto.get(contatore));
 					mettiDescrizione=false;
 				}

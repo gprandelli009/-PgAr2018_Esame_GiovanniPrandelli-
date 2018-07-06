@@ -41,8 +41,12 @@ public class Paragrafo {
 		link.add(linkAggiunto);
 	}
 
-	public ArrayList<Integer> getLink(){
+	public ArrayList<Integer> getLinks(){
 		return link;
+	}
+	
+	public int getLink(int puntatore){
+		return link.get(puntatore);
 	}
 
 	public void pulisciLink() {

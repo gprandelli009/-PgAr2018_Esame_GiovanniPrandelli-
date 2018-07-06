@@ -2,6 +2,8 @@ package Progetto;
 
 import java.util.ArrayList;
 
+import Libreria.CreatoreMenu;
+
 public class Storia {
 
 	private String titolo; 
@@ -12,11 +14,9 @@ public class Storia {
 
 	}
 
-	public void stampaStoria() {
-		System.out.println(titolo);
-		for(int i=0;i<dimensioneStoria;i++) {
-			System.out.println(paragrafi.get(0).getId());
-		}
+	public void stampaStoria(int prossimoParagrafo) {
+		CreatoreMenu menu= new CreatoreMenu(titolo,paragrafi.get(prossimoParagrafo).getOpzioni(),paragrafi.get(prossimoParagrafo).getLinks());
+		menu.stampaMenu();
 	}
 	
 	public int getDimensione() {
