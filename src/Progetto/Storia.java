@@ -24,15 +24,21 @@ public class Storia {
 			return;
 		}
 		else {
+			boolean nonPossibile=false;
+			//			stampaStoria(prossimoParagrafo);
 			for(int puntatore:paragrafi.get(paragrafoCorrente).getLinks()) {
 				if(puntatore==prossimoParagrafo) {
-					stampaStoria(prossimoParagrafo);
-				}
-				else {
-					System.out.println("Cortesemente, inserisci un'opzione valida");
-					stampaStoria(paragrafoCorrente);
+					nonPossibile=true;
 				}
 			}
+			if(nonPossibile) {
+				stampaStoria(prossimoParagrafo);
+			}
+			else {
+				System.out.println("Cortesemente, inserisci un'opzione valida");
+				stampaStoria(paragrafoCorrente);
+			}
+
 		}
 	}
 
