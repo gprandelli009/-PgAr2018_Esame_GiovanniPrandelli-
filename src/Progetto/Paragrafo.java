@@ -11,7 +11,6 @@ public class Paragrafo {
 	private  int id;
 
 	public Paragrafo() {
-
 	}
 
 	public int getId() {
@@ -41,7 +40,7 @@ public class Paragrafo {
 	public void aggiungiLink(int linkAggiunto) {
 		link.add(linkAggiunto);
 	}
-	
+
 	public ArrayList<Integer> getLink(){
 		return link;
 	}
@@ -50,4 +49,16 @@ public class Paragrafo {
 		link.clear();
 	}
 	
+	public void aggiungiOpzione(String opzioneAggiunta) {
+		opzioni.add(opzioneAggiunta);
+	}
+
+	public String getOpzione(int puntatore){
+		return opzioni.get(puntatore);
+	}
+	
+	public ArrayList<String> getOpzioni(){
+		return opzioni;
+	}
+
 }

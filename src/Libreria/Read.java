@@ -1,7 +1,8 @@
 package Libreria;
 
-
 import java.io.FileInputStream;
+import java.util.ArrayList;
+
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
@@ -10,6 +11,9 @@ import Progetto.*;
 public class Read {
 	Storia storia=new Storia();
 	int idDaPassare=0;
+	String testo;
+	private ArrayList<String> stringheNelTesto = new ArrayList<String>();
+
 
 	public Read() {
 
@@ -36,10 +40,11 @@ public class Read {
 					//System.out.println("Inside "+xmlr.getText());
 					break;	            	
 				case XMLStreamConstants.CHARACTERS:
-//					if(xmlr.getText().trim().length()>0) {
-//						System.out.println(xmlr.getText());
-//						String stringa=xmlr.getText();		
-//					}
+					if(xmlr.getText().trim().length()>0) {
+						//System.out.println(xmlr.getText());
+						testo=xmlr.getText();
+						stringheNelTesto.add(testo);
+					}
 					break;
 				case XMLStreamConstants.COMMENT:
 					if(xmlr.getText().trim().length()>0)
@@ -57,7 +62,7 @@ public class Read {
 		}
 
 		Raccolta.storie.add(storia);
-
+        System.out.println(stringheNelTesto.get(0));
 	}
 
 	public void scritturaStoria(String tag,String parametro1, String parametro2) {
@@ -79,6 +84,10 @@ public class Read {
 			}
 			if(tag.equals("option")) {
 				storia.paragrafi.get(idDaPassare).aggiungiLink(Integer.parseInt(parametro1));
+				storia.paragrafi.get(idDaPassare).aggiungiOpzione(testo);
+			}
+			if(tag.equals("description")) {
+				storia.paragrafi.get(idDaPassare).setDescrizione(testo);
 			}
 		}
 	}
