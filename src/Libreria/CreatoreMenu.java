@@ -13,7 +13,7 @@ import Libreria.InputDati;
 	*/
 public class CreatoreMenu {
 	  final private static String CORNICE = "--------------------------------";
-	  final private static String VOCE_USCITA = "0\tEsci";
+	  final private static String VOCE_USCITA = "-1\tEsci";
 	  final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
 
 	  private String titolo;
@@ -32,7 +32,7 @@ public class CreatoreMenu {
 	  public int scegli ()
 	  {
 		stampaMenu();
-		return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.size());	 
+		return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, -1, voci.size());	 
 	  }
 			
 	  public void stampaMenu ()
@@ -42,7 +42,10 @@ public class CreatoreMenu {
 		System.out.println(CORNICE);
 	    for (int i=0; i<voci.size(); i++)
 		 {
+	    	if(scelte!=null)
 		  System.out.println( (scelte.get(i) + "\t" + voci.get(i)));
+	    	else
+	    		System.out.println( (i+1) + "\t" + voci.get(i));
 		 }
 	    System.out.println();
 		System.out.println(VOCE_USCITA);

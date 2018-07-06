@@ -13,6 +13,7 @@ public class Read {
 	int idDaPassare=0;
 	String testo;
 	int contatore=0;
+	boolean continuaAdAcquisire=false;
 	private ArrayList<String> stringheNelTesto = new ArrayList<String>();
 
 
@@ -29,11 +30,18 @@ public class Read {
 			while(xmlr.hasNext()) {
 				switch(xmlr.getEventType()) {
 				case XMLStreamConstants.START_DOCUMENT:
-					System.out.println("Start Read Doc "+filename);
+					//System.out.println("Start Read Doc "+filename);
 					break;
 				case XMLStreamConstants.START_ELEMENT:
 					//System.out.println(xmlr.getLocalName()+ xmlr.getAttributeValue(0)+xmlr.getAttributeValue(1));
 					scritturaStoria(xmlr.getLocalName(),xmlr.getAttributeValue(0),xmlr.getAttributeValue(1));
+//					if(xmlr.getLocalName().equals("description")) {
+//						continuaAdAcquisire=true;
+//					}
+					break;
+				case XMLStreamConstants.END_ELEMENT:
+
+					break;
 				case XMLStreamConstants.ATTRIBUTE:
 					//System.out.println(xmlr.getAttributeValue(0));
 					break;
@@ -41,9 +49,12 @@ public class Read {
 					//System.out.println("Inside "+xmlr.getText());
 					break;	            	
 				case XMLStreamConstants.CHARACTERS:
+//					if(continuaAdAcquisire) {
+//						
+//					}
 					if(xmlr.getText().trim().length()>0) {
 						//System.out.println(xmlr.getText());
-						testo=xmlr.getText();
+						testo=xmlr.getText().trim();
 						stringheNelTesto.add(testo);
 					}
 					break;
@@ -57,12 +68,14 @@ public class Read {
 				xmlr.next();
 
 			}
-		}catch(Exception e){
+		}
+		catch(Exception e){
 			System.err.println("Error detected");
 			System.err.println(e.getMessage());
 		}
 
 		Raccolta.storie.add(storia);
+		//System.out.println(stringheNelTesto);
 		for(int i=0;i<storia.getDimensione();i++) {
 			boolean mettiDescrizione=true;
 			for(int j=0;j<storia.paragrafi.get(i).getLinks().size()+1;j++) {
@@ -80,7 +93,7 @@ public class Read {
 
 	public void scritturaStoria(String tag,String parametro1, String parametro2) {
 		if(tag.equals("storygame")) {
-			System.out.println("Nuova storia avviata");
+			//System.out.println("Nuova storia avviata");
 			return;	
 		}
 		if(tag.equals("story")) {
@@ -97,11 +110,11 @@ public class Read {
 			}
 			if(tag.equals("option")) {
 				storia.paragrafi.get(idDaPassare).aggiungiLink(Integer.parseInt(parametro1));
-//				storia.paragrafi.get(idDaPassare).aggiungiOpzione(testo);
+				//				storia.paragrafi.get(idDaPassare).aggiungiOpzione(testo);
 			}
-//			if(tag.equals("description")) {
-//				storia.paragrafi.get(idDaPassare).setDescrizione(testo);
-//			}
+			//			if(tag.equals("description")) {
+			//				storia.paragrafi.get(idDaPassare).setDescrizione(testo);
+			//			}
 		}
 	}
 }
